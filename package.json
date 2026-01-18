@@ -1,0 +1,32 @@
+{
+  "name": "openai-agentic-chat-scaffold",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Monorepo scaffold: Next.js chat UI + Express backend + OpenAI Agents SDK + MCP notes server",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -n mcp,api,web -c blue,green,yellow \"npm run dev -w @scaffold/mcp-notes\" \"npm run dev -w @scaffold/api\" \"npm run dev -w @scaffold/web\"",
+    "build": "npm run build -w @scaffold/shared && npm run build -w @scaffold/api && npm run build -w @scaffold/web",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint . --ext .ts,.tsx --max-warnings 0",
+    "typecheck": "tsc -b",
+    "evals": "npm run evals -w @scaffold/evals",
+    "clean": "rm -rf node_modules apps/*/node_modules packages/*/node_modules apps/*/.next apps/*/dist packages/*/dist"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@typescript-eslint/eslint-plugin": "^8.18.0",
+    "@typescript-eslint/parser": "^8.18.0",
+    "concurrently": "^9.1.0",
+    "eslint": "^8.57.0",
+    "typescript": "^5.7.0",
+    "vitest": "^2.1.0"
+  }
+}
